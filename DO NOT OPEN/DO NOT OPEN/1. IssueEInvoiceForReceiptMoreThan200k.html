@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+
+	<title>MUJI VIỆT NAM</title>
+</head>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	-->
+<!--
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="lbc.js"></script>
+	-->
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular.min.js"></script>
+
+
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl as ctrl" class="container-fluid">
+		<div class="container">
+			<div class=" justify-content-md-center">
+				<h2 class="row justify-content-md-center"><img src="./pics/logo.png" class="img-thumbnail" ></h2>
+				<h3 class="row justify-content-md-center" ng-if="isProcessing">HỆ THỐNG ĐANG XỬ LÍ CUỐI NGÀY. </h3>
+				<h3 class="row justify-content-md-center" ng-if="!isProcessing">HỆ THỐNG ĐÃ XỬ LÍ CUỐI NGÀY XONG. BẠN CÓ THỂ ĐÓNG TRANG
+					NÀY. </h3>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function ($scope, $http) {
+			var s = $scope;
+			var h = $http;
+			s.token = null;
+			s.store_no = 8;
+			s.server = "http://localhost:5001";
+			s.filepath = "D:\\EInvoice\\EInvoice Front-end\\queries\\";
+			s.isProcessing = 1;
+			s.init = function () {
+				var settings = {
+					"url": s.server + "/prism/api/auth/get-token",
+					"method": "POST",
+					"timeout": 0,
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"data": JSON.stringify({ "username": "admin", "password": "1qaz@WSX" }),
+				};
+
+				$.ajax(settings).done(function (response) {
+					s.token = response.accessToken;
+					settings = {
+						"url": s.server + "/prism/api/EInvoice/IssueEInvoiceForReceiptMoreThan200k",
+						"method": "POST",
+						"timeout": 0,
+						"headers": {
+							"Authorization": "Bearer " + s.token,
+							"Content-Type": "application/json"
+						},
+						"data": JSON.stringify(
+							{
+								"filepath": s.filepath + "EInvoice_searchReceiptByAmtMoreThan200k.txt",
+								"folderpath": "string",
+								"fileExtention": "string",
+								"reportFilters": [{filterName:"#STORE_NO",filterOperator:"=",filterValue:s.store_no}
+								]
+
+							}),
+					};
+
+					$.ajax(settings).done(function (response) {
+						s.isProcessing = 0;
+						s.$apply();
+						window.close();
+					});
+
+				});
+
+			};
+
+			$(document).ready(function () {
+				$scope.init();
+			});
+		});
+	</Script>
+
+</body>
+
+</html>

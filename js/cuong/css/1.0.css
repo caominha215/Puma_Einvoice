@@ -1,0 +1,93 @@
+.ui-grid-row:hover .ui-grid-cell {
+    background: #16cbe6;
+}
+.grid {
+    height: 400px;
+}
+#grid-clipboard{
+    height: 0px;
+    width: 0px;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+.only-bottom-border{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+
+}
+.cms-page-content{
+    margin-top: 40px;
+}
+.cms-cellTemplate{
+    height: 28px;
+    padding: 3px;
+}
+.cms-hand-pointer{
+    cursor: pointer;
+}
+.cms-typeahead-hint{
+    border-collapse: collapse;
+    table-layout: fixed;
+    width:100px;
+}
+.cms-cell-bg-red {
+    background-color: red !important
+}
+.cms-cell-bg-blue {
+    background-color: blue !important
+}
+.cms-cell-bg-green {
+    background-color: green !important
+}
+.cms-cell-bg-pink {
+    background-color: pink !important
+}
+.cms-cell-bg-yellow {
+    background-color: yellow !important
+}
+.cms-cell-bg-purple {
+    background-color: purple !important
+}
+
+.cmp-page-content{
+    margin-top: 40px;
+}
+.cmp-cellTemplate{
+    height: 28px;
+    padding: 3px;
+}
+.cmp-hand-pointer{
+    cursor: pointer;
+}
+.cmp-typeahead-hint{
+    border-collapse: collapse;
+    table-layout: fixed;
+    width:100px;
+}
+.cmp-cell-bg-red {
+    background-color: red !important
+}
+.cmp-cell-bg-blue {
+    background-color: blue !important
+}
+.cmp-cell-bg-green {
+    background-color: green !important
+}
+.cmp-cell-bg-pink {
+    background-color: pink !important
+}
+.cmp-cell-bg-yellow {
+    background-color: yellow !important
+}
+.cmp-cell-bg-purple {
+    background-color: purple !important
+}

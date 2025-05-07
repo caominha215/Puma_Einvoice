@@ -1,0 +1,13 @@
+ select 
+doc_no RECEIPT_NO,
+store_no RECEIPT_STORE,
+invc_post_date RECEIPT_DATETIME,
+transaction_total_amt RECEIPT_AMOUNT,
+to_char(i.sid) INVC_SID,
+e.einvoice_no,
+bt_first_name ||' '|| bt_last_name CUSTOMER_NAME,
+to_char(i.ref_sale_sid) REF_SALE_SID
+from rps.document i left join einvoice_history e on to_char(i.sid) =  REGEXP_SUBSTR(e.sid, '^[^/]+')
+where 
+status = 4 
+and i.sid = #INVC_SID
