@@ -1,0 +1,145 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <title>PUMA VIỆT NAM</title>
+  </head>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	-->
+	<!--
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="lbc.js"></script>
+	-->
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/popper.min.js" ></script>
+    <script src="./js/bootstrap.min.js" ></script>
+	<script src="./js/angular.min.js"></script>
+	<script src="./js/lbc.js"></script>
+	
+  <body>
+
+    <div ng-app="myApp" ng-controller="myCtrl as ctrl" class="container-fluid">
+	  <div id ="containerID" class="container">
+		<div class="row justify-content-md-center">
+			<h2 class="text-center"><img style="width:50%" src="./pics/logo.png" class="img-thumbnail" ></h2>
+			<h3 class="text-center">DÀNH CHO KHÁCH HÀNG CUNG CẤP THÔNG TIN XUẤT HÓA ĐƠN ĐIỆN TỬ</h3>
+		</div>
+		<div class="alert alert-secondary" ng-hide="step!='SCAN'">
+			<!-- <h4 class="text-center">XIN VUI LÒNG SCAN BARCODE CÓ TRÊN BILL CỦA BẠN</h4> -->
+			<!-- <input type="text" class="form-control" placeholder="Scan barcode của bill" ng-model="receipt_sid"  -->
+			<!-- id="receipt_sid"> -->
+			<div class="alert alert-danger" role="alert" ng-if="error=='NOT FOUND'">
+			  KHÔNG TÌM THẤY BILL NÀY TRONG HỆ THỐNG!
+			</div>
+			<div class="alert alert-danger" role="alert" ng-if="error=='CONNECTION FAILED'">
+				LỖI KẾT NỐI!
+			  </div>
+			<div class="alert alert-danger" role="alert" ng-if="error=='E-INVOICE ISSUED'">
+			  BILL NÀY ĐÃ XUẤT E-INVOICE TRƯỚC ĐÓ!
+			</div>
+		</div>
+		<div class="alert alert-primary" ng-hide="step!='INPUT'">
+			<h5 class="text-center">Thông tin bill bán hàng cần xuất hóa đơn</h5>
+			<table class="table">
+			  <thead>
+				<tr>
+				  <th scope="col">Số bill</th>
+				  <th scope="col">Cửa hàng bán</th>
+				  <th scope="col">Ngày ra bill</th>
+				  <th scope="col">Tổng giá tiền</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td>{{receipt_no}}</td>
+				  <td>{{receipt_store}}</td>
+				  <td>{{receipt_datetime}}</td>
+				  <td>{{receipt_amount | number:0}}</td>
+				  
+				</tr>
+				
+			  </tbody>
+			</table>
+		</div>
+		<div class="alert alert-secondary" ng-hide="step!='INPUT'">
+			<h4 class="text-center">XIN VUI LÒNG NHẬP TIẾNG VIỆT CÓ DẤU</h4>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" >Tên công ty</span>
+			  </div>
+			  <input type="text" class="form-control" ng-model = "receipt_companyName ">
+			</div>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" >Địa chỉ công ty</span>
+			  </div>
+			  <textarea type="text" class="form-control" ng-model = "receipt_companyAddr"></textarea>
+			</div>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" >Mã Số Thuế</span>
+			  </div>
+			  <input type="text" class="form-control" ng-model = "receipt_companyTaxCode">
+			  <button type="button" class="btn btn-primary" ng-click="getVatInfo()" >Lấy Thông Tin</button>
+
+			</div>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" >Email nhận hóa đơn</span>
+			  </div>
+			  <input class="form-control" ng-model = "receipt_email" type="email">
+			</div>
+			<div class="text-center">
+				<!--<button type="button" class="btn btn-primary" ng-click="inputDone()" ng-disabled="!receipt_companyName||!receipt_companyAddr||!receipt_companyTaxCode||!receipt_email">Đã nhập xong</button>-->
+				<button type="button" class="btn btn-primary" ng-click="inputDone()" >Đã nhập xong</button>
+			</div>
+		</div>
+		<div class="alert alert-warning" ng-hide="step!='REVIEW'">
+			<h4 class="text-center">XIN VUI LÒNG XÁC NHẬN THÔNG TIN BẠN ĐÃ NHẬP BÊN DƯỚI LÀ CHÍNH XÁC</h4>
+			<table class="table">
+			  <tbody>
+				<tr>
+					<th scope="row">Tên công ty: </th>
+					<td>{{receipt_companyName}}</td>
+				</tr>
+				<tr>
+					<th scope="row">Địa chỉ công ty: </th>
+					<td>{{receipt_companyAddr}}</td>
+				</tr>
+				<tr>
+					<th scope="row">Mã Số Thuế: </th>
+					<td>{{receipt_companyTaxCode}}</td>
+				</tr>
+				<tr>
+					<th scope="row">Email nhận hóa đơn: </th>
+					<td>{{receipt_email}}</td>
+				</tr>
+				
+			  </tbody>
+			</table>
+			<div class="text-center">
+				<button type="button" class="btn btn-primary" ng-click="issue()" ng-disabled = "issueing">Thông tin đã đúng, hãy xuất hóa đơn cho tôi</button>
+				<button type="button" class="btn btn-primary" ng-click="reInput()" ng-disabled = "issueing">Nhập lại</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+
+
+    
+  </body>
+</html>
