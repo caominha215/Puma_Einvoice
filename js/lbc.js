@@ -9,7 +9,7 @@ app.controller('myCtrl', function($scope, $http) {
 		s.receipt_detail = null;
 		s.token = null;
 		s.store_no = 1;
-		s.server = "https://privn-pos1.apac.mypuma.net:5005";
+		s.server = "http://privn-pos1.apac.mypuma.net:5005";
 		s.filepath = "C:\\EInvoice\\EInvoice Front-end\\queries\\";
 		s.workstation = "";
 		s.init = function()
