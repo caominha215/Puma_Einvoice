@@ -65,14 +65,14 @@
 				<tr>
 				  <td>{{receipt_no}}</td>
 				  <td>{{receipt_store}}</td>
-				  <td>{{receipt_datetime}}</td>
+				  <td>{{ receipt_datetime | date:'yyyy-MM-dd' }}</td>
 				  <td>{{receipt_amount | number:0}}</td>
 				</tr>
 			  </tbody>
 			</table>
 		</div>
 		<div class="alert alert-secondary" ng-hide="step!='INPUT'">
-			<h4 class="text-center">PLEASE ENTER IN VIETNAMESE WITH TONE MARKS</h4>
+			<!--<h4 class="text-center">PLEASE ENTER IN VIETNAMESE WITH TONE MARKS</h4>-->
 			<div class="input-group mb-3">
 			  <div class="input-group-prepend">
 				<span class="input-group-text" >Tax Code</span>
