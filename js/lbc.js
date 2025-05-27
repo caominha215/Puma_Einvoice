@@ -207,11 +207,11 @@ app.controller('myCtrl', function($scope, $http) {
 				    s.issueing = 0;
 				
 				    if (response.message === 'SUCCESS') {
-				      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
+				      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!\n\nThe invoice will be sent to the email you just provided. Thank you!");
 				      s.step = 'SCAN';
 				      s.receipt_sid = "";
 				    } else {
-				      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
+				      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!\n\nInvoice issuance failed! Please contact staff for assistance.");
 				    }
 				
 				    s.$apply();
@@ -250,11 +250,11 @@ app.controller('myCtrl', function($scope, $http) {
 					    s.issueing = 0;
 					
 					    if (response.message === 'SUCCESS') {
-					      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
+					      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!\n\nThe invoice will be sent to the email you just provided. Thank you!");
 					      s.step = 'SCAN';
 					      s.receipt_sid = "";
 					    } else {
-					      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
+					      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!\n\nInvoice issuance failed! Please contact staff for assistance.");
 					    }
 					
 					    s.$apply();
