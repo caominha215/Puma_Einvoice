@@ -206,7 +206,7 @@ app.controller('myCtrl', function($scope, $http) {
 				  .done(function (response) {
 				    s.issueing = 0;
 				
-				    if (response.message === 'SUCCESS') {
+				    if (response.eInvoiceNo !== null) {
 				      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!\n\nThe invoice will be sent to the email you just provided. Thank you!");
 				      s.step = 'SCAN';
 				      s.receipt_sid = "";
@@ -249,7 +249,7 @@ app.controller('myCtrl', function($scope, $http) {
 					  .done(function (response) {
 					    s.issueing = 0;
 					
-					    if (response.message === 'SUCCESS') {
+					    if (response.eInvoiceNo !== null) {
 					      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!\n\nThe invoice will be sent to the email you just provided. Thank you!");
 					      s.step = 'SCAN';
 					      s.receipt_sid = "";
