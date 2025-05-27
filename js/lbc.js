@@ -202,23 +202,27 @@ app.controller('myCtrl', function($scope, $http) {
 						}),
 				};
 			  
-				$.ajax(settings).done(function (response) {
-					s.issueing = 0;
-					if(response.message='SUCCESS' )
-					{
-						
-						alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
-						s.step = 'SCAN';
-						s.receipt_sid = "";
-					}
-					else
-					{
-						alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
-					}
-					//  s.receipt_sid = "";
-					s.$apply();
-					
-				});
+				$.ajax(settings)
+				  .done(function (response) {
+				    s.issueing = 0;
+				
+				    if (response.message === 'SUCCESS') {
+				      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
+				      s.step = 'SCAN';
+				      s.receipt_sid = "";
+				    } else {
+				      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
+				    }
+				
+				    s.$apply();
+				  })
+				  .fail(function (jqXHR, textStatus, errorThrown) {
+				    s.issueing = 0;
+				    alert("Lỗi kết nối đến máy chủ! Vui lòng thử lại hoặc liên hệ hỗ trợ.");
+				    console.error("AJAX Error:", textStatus, errorThrown);
+				    s.$apply();
+				  });
+
 				
 			} else {
 					
@@ -241,23 +245,27 @@ app.controller('myCtrl', function($scope, $http) {
 						}),
 				};
 			  
-				$.ajax(settings).done(function (response) {
-					s.issueing = 0;
-					if(response.message='SUCCESS' )
-					{
-						
-						alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
-						s.step = 'SCAN';
-						s.receipt_sid = "";
-					}
-					else
-					{
-						alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
-					}
-					//  s.receipt_sid = "";
-					s.$apply();
+				$.ajax(settings)
+					  .done(function (response) {
+					    s.issueing = 0;
 					
-				});
+					    if (response.message === 'SUCCESS') {
+					      alert("Hóa đơn sẽ được gởi vào email quí khách vừa cung cấp. Xin cám ơn quí khách!");
+					      s.step = 'SCAN';
+					      s.receipt_sid = "";
+					    } else {
+					      alert("Hóa đơn xuất không thành công! Xin vui lòng liên hệ nhân viên để được hỗ trợ!");
+					    }
+					
+					    s.$apply();
+					  })
+					  .fail(function (jqXHR, textStatus, errorThrown) {
+					    s.issueing = 0;
+					    alert("Lỗi kết nối đến máy chủ! Vui lòng thử lại hoặc liên hệ hỗ trợ.");
+					    console.error("AJAX Error:", textStatus, errorThrown);
+					    s.$apply();
+					  });
+
 			}
 			
 			
