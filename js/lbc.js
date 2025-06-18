@@ -9,7 +9,7 @@ app.controller('myCtrl', function($scope, $http) {
 		s.receipt_detail = null;
 		s.token = null;
 		s.store_no = 1;
-		s.server = "https://e6a5-119-56-97-209.ngrok-free.app";
+		s.server = "https://a379-119-56-98-232.ngrok-free.app";
 		s.filepath = "C:\\EInvoice\\EInvoice Front-end\\queries\\";
 		s.workstation = "";
 		s.init = function()
