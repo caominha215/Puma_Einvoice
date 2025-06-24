@@ -10,7 +10,7 @@ app.controller('myCtrl', function($scope, $http) {
 		s.token = null;
 		s.store_no = 1;
 		s.server = "https://puma-einvoice.ngrok.app";
-		s.filepath = "C:\\EInvoice\\EInvoice Front-end\\queries\\";
+		s.filepath = "D:\\EInvoice\\EInvoice Front-end\\queries\\";
 		s.workstation = "";
 		s.init = function()
 		{
