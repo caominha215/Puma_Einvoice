@@ -39,7 +39,10 @@ app.controller('myCtrl', function($scope, $http) {
 			const id = urlParams.get("id");
 			const store_no = urlParams.get("store_no");
 			if (id) {
-				
+				if(store_no === 3) 
+				{
+					s.server = "https://3acfc0681bc7.ngrok-free.app";
+				}
 				s.reportFilters = [];
 				s.receipt_sid = id
 				s.reportFilters.push({filterName:"#INVC_SID",filterOperator:"=",filterValue:s.receipt_sid});
@@ -365,4 +368,5 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
