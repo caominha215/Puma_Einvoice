@@ -37,7 +37,7 @@ app.controller('myCtrl', function($scope, $http) {
 			  
 			const urlParams = new URLSearchParams(window.location.search);
 			const id = urlParams.get("id");
-			const store_no = urlParams.get("store_no");
+			//const store_no = urlParams.get("store_no");
 			if (id) {
 				/*if(store_no === 3) 
 				{
@@ -368,6 +368,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
