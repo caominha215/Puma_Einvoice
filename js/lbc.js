@@ -37,7 +37,7 @@ app.controller('myCtrl', function($scope, $http) {
 			  
 			const urlParams = new URLSearchParams(window.location.search);
 			const id = urlParams.get("id");
-
+			const store_no = urlParams.get("store_no");
 			if (id) {
 				
 				s.reportFilters = [];
@@ -90,7 +90,7 @@ app.controller('myCtrl', function($scope, $http) {
 							
 					  }
 					  else
-					  {
+					  { 
 						setTimeout(function () {
 							s.error = 'NOT FOUND';
 							s.$apply();
@@ -365,3 +365,4 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
