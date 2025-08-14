@@ -41,7 +41,7 @@ app.controller('myCtrl', function($scope, $http) {
 			if (id) {
 				if(store_no == 3) 
 				{
-					s.server = "https://d047aaa9ead4.ngrok-free.app";
+					s.server = "https://54fad34ecbe5.ngrok-free.app";
 				}
 				s.reportFilters = [];
 				s.receipt_sid = id
@@ -368,6 +368,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
