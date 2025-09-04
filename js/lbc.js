@@ -41,7 +41,7 @@ app.controller('myCtrl', function($scope, $http) {
 			if (id) {
 				if(store_no == 3) 
 				{
-					s.server = "https://c48e46c57f05.ngrok.app";
+					s.server = "https://lotte-puma-einvoice.ngrok.app";
 				}
 				s.reportFilters = [];
 				s.receipt_sid = id
@@ -368,6 +368,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
