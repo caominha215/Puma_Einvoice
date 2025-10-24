@@ -43,6 +43,10 @@ app.controller('myCtrl', function($scope, $http) {
 				{
 					s.server = "https://lotte-puma-einvoice.ngrok.app";
 				}
+				if(store_no == 2) 
+				{
+					s.server = "https://quang-trung-puma-einvoice.ngrok.app";
+				}
 				s.reportFilters = [];
 				s.receipt_sid = id
 				s.reportFilters.push({filterName:"#INVC_SID",filterOperator:"=",filterValue:s.receipt_sid});
@@ -368,6 +372,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
