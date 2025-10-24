@@ -45,7 +45,7 @@ app.controller('myCtrl', function($scope, $http) {
 				}
 				if(store_no == 2) 
 				{
-					s.server = "https://quang-trung-puma-einvoice.ngrok.app";
+					s.server = "https://quang-trung-einvoice.ngrok.app";
 				}
 				s.reportFilters = [];
 				s.receipt_sid = id
@@ -372,6 +372,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
