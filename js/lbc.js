@@ -9,7 +9,7 @@ app.controller('myCtrl', function($scope, $http) {
 		s.receipt_detail = null;
 		s.token = null;
 		s.store_no = 1;
-		s.server = "https://puma-einvoice.ngrok.app";
+		s.server = "https://dong-khoi-einvoice.ngrok.app";
 		s.filepath = "D:\\EInvoice\\EInvoice Front-end\\queries\\";
 		s.workstation = "";
 		s.init = function()
@@ -372,6 +372,7 @@ app.controller('myCtrl', function($scope, $http) {
 		});
 		
 });
+
 
 
 
